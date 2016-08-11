@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @todo_list.date %>
+</p>
+
+<%= render @todo_list.todo_items %>
+<br>
+<%= render "todo_items/form" %>
+<%= render "comments/comment" %>
+
+<%= link_to 'Back', todo_lists_path %>

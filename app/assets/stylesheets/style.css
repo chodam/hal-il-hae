@@ -1,0 +1,11 @@
+.form-horizontal {
+    width: 400px;
+    height: 230px;
+    background: #edeff1;
+    margin: 0px auto;
+    padding-top: 20px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+

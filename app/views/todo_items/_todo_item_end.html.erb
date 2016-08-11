@@ -1,0 +1,10 @@
+<% if todo_item.completed? %>
+  <div class="todo_item">
+    <p style="opacity:0.4;"><%= todo_item.item %></p>
+  </div>
+<% else %>
+  <div class="todo_item">
+    <p><%= todo_item.item %></p>
+  </div>
+<% end %>
+
