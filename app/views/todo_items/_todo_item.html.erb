@@ -1,0 +1,23 @@
+<% if todo_item.completed? %>
+  <div class="todo_item">
+    <p style="opacity:0.4;"><%= todo_item.item %></p>
+  </div>
+  <div class="trash">
+    <%= link_to "삭제", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: {confirm: "are you sure?"} %>
+  </div>
+<% else %>
+  <div class="todo_item">
+    <p><%= todo_item.item %></p>
+  </div>
+  <div class="trash">
+    <%= link_to "삭제", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: {confirm: "are you sure?"} %>
+  </div>
+  <div class="complete">
+    <form action="/todo_items/complete" method ="post" enctype="multipart/form-data">
+      <input type="file" name="pic" accept="/image/*">
+     <button type="submit">할일다햇져</button>
+    </form>
+    </div>
+  <img src="<%= @todo_pic %>">
+<% end %>
+
