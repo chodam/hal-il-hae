@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+</head>
+<body>
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Todo Lists</h1>
@@ -12,13 +18,14 @@
   </thead>
 
   <tbody>
+    
     <% @todo_lists.each do |todo_list| %>
       <tr>
         <td><%= todo_list.date %></td>
         <td><%= todo_list.done %></td>
         <td><%= link_to 'Show', todo_list %></td>
-        <td><%= link_to 'Edit', edit_todo_list_path(todo_list) %></td>
-        <td><%= link_to 'Destroy', todo_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!--<td><%= link_to 'Edit', edit_todo_list_path(todo_list) %></td>-->
+        <!--<td><%= link_to 'Destroy', todo_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>
@@ -27,3 +34,22 @@
 <br>
 
 <%= link_to 'New Todo list', new_todo_list_path %>
+
+<%= month_calendar events: @meetings do |date, meetings| %>
+
+  <%= date %>
+  <% meetings.each do |meeting| %>
+    <div>
+      <%= meeting.name %>
+    </div>
+  <% end %>
+<% end %>
+
+
+<% @users.each do |user| %>
+<p>닉네임: <%= user.nickname %></p>
+<p>할일판: <a href="">할일판</a> </p>
+<p>레벨: <></p>
+<% end %>
+</body>
+</html>

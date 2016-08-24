@@ -19,13 +19,14 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day,   :at => 'current_user.deadline' do 
+every 1.hours,   :at => 'current_user.deadline' do 
   #1.minute 1.day 1.week 1.month 1.year is also supported
   #1. todo_list_id -1 의 todo_items의 
   if condition
     
   end
   rake "db"
+  
   command "/usr/bin/my_great_command"
 end
 

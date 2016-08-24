@@ -3,8 +3,13 @@
     <p style="opacity:0.4;"><%= todo_item.item %></p>
   </div>
 <% else %>
+<!--활성화해줄 부분; 클릭이 가능해야함-->
   <div class="todo_item">
-    <p><%= todo_item.item %></p>
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item"><p><%= todo_item.item %></p></iframe>
   </div>
+    
+  </div>
+  <!--선택된 할일들은 다음날 할일에 자동 추가-->
 <% end %>
 

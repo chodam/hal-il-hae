@@ -11,22 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811050453) do
+ActiveRecord::Schema.define(version: 20160823073400) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
     t.integer  "todo_list_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "nickname"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "friendable_id"
+    t.string   "friendable_type"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "blocker_id"
+    t.integer  "status"
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "start_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "image_url",  default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "todo_items", force: :cascade do |t|
     t.string   "item"
-    t.integer  "clear"
-    t.string   "image_url"
+    t.boolean  "clear",        default: false
+    t.string   "image_url",    default: ""
     t.integer  "todo_list_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.datetime "completed_at"
   end
 
@@ -34,9 +58,10 @@ ActiveRecord::Schema.define(version: 20160811050453) do
 
   create_table "todo_lists", force: :cascade do |t|
     t.datetime "date"
-    t.integer  "done"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "done",       default: 0
+    t.integer  "user_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160811050453) do
     t.integer  "deadline"
     t.integer  "point"
     t.integer  "level"
+    t.integer  "add_point"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

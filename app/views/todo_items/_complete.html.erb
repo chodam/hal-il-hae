@@ -1,0 +1,12 @@
+<% if todo_item.completed? %>
+
+
+<% else %>
+  <div class="complete">
+    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+    <form action="/todo_items/complete/<%= @todo_list.id %>" method ="post" enctype="multipart/form-data">
+      <input type="file" name="pic" accept="/image/*">
+      <input type="submit" value="완료">
+    </form>
+  </div>
+<% end %>

@@ -1,23 +1,103 @@
-<% if todo_item.completed? %>
-  <div class="todo_item">
-    <p style="opacity:0.4;"><%= todo_item.item %></p>
-  </div>
-  <div class="trash">
-    <%= link_to "삭제", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: {confirm: "are you sure?"} %>
-  </div>
-<% else %>
-  <div class="todo_item">
-    <p><%= todo_item.item %></p>
-  </div>
-  <div class="trash">
-    <%= link_to "삭제", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: {confirm: "are you sure?"} %>
-  </div>
-  <div class="complete">
-    <form action="/todo_items/complete" method ="post" enctype="multipart/form-data">
-      <input type="file" name="pic" accept="/image/*">
-     <button type="submit">할일다햇져</button>
-    </form>
-    </div>
-  <img src="<%= @todo_pic %>">
-<% end %>
+<!DOCTYPE html>
+<html>
+<head> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<script type="text/javascript">
+  $( init );
+  function init() {
+    $('#item<%=todo_item.id%>').draggable();
+  }
+</script>
 
+<style>
+#makeMeDraggable { width: 300px; height: 300px; background: red; }
+</style>
+
+<script>
+    $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
+  
+</script>
+ 
+</head>
+
+<body>
+<div class="row clearfix">
+  <% if todo_item.completed? %>
+    <div class="card-panel hoverable" id="item<%=todo_item.id%>">
+      <div class="todo_item">
+        <p style="opacity:0.4;"><%= todo_item.item %></p>
+          <!-- Modal Trigger -->
+          <a class="waves-effect waves-light btn modal-trigger" href="#modal<%=todo_item.id%>">사진 보기</a>
+          <!-- Modal Structure -->
+          <div id="modal<%=todo_item.id%>" class="modal">
+            <div class="modal-content">
+              <h4>Modal Header</h4>
+              <%= image_tag todo_item.image_url.thumb.url%>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
+        
+      </div>
+      <div class="glyphicon glyphicon-search" aria-hidden="true">
+        <%= link_to "삭제", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: {confirm: "are you sure?"} %>
+      </div>
+      
+    </div>
+    
+
+    
+  <% else %>
+    <div class="todo_item">
+      <div class="card-panel hoverable" id="item<%=todo_item.id%>">
+      <p><%= todo_item.item %>
+          <form action="/todo_items/upload/<%= todo_item.id %>" method ="post" enctype="multipart/form-data">
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>File</span>
+                <input type="file"  name="pic" accept="/image/*">
+                <input type="hidden" name="current_user">
+                <input type="hidden" name="todo_list_id" value="<%= @todo_list.id %>">  <!--강제로 todo_list_id전송하고-->
+                <input type="hidden" name="id" value="<%= todo_item.id %>">             <!--강제로 todo_item의 id 전송-->
+                
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="사진을 첨부하세요">
+              </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                  <i class="material-icons right">send</i>
+                </button>
+            </div>
+          </form>
+        
+        <!--<form action="/todo_items/upload/<%= todo_item.id %>" method ="post" enctype="multipart/form-data">-->
+        <!--  <input type="file" name="pic" accept="/image/*">-->
+        <!--  <input type="hidden" name="current_user">-->
+        <!--  <input type="hidden" name="todo_list_id" value="<%#= @todo_list.id %>">-->
+        <!--  <input type="hidden" name="id" value="<%#= todo_item.id %>">-->
+        <!--  <input type="submit" value="완료">-->
+        <!--</form>-->
+      </p>
+
+  
+    
+    <div class="glyphicon glyphicon-trash" aria-hidden="true">
+      <%= link_to "삭제", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: {confirm: "are you sure?"} %>
+    </div>
+   </div>
+       </div>
+    
+  <% end %>
+</div>
+
+
+
+  
+
+</body>
+</html>

@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 
+gem "simple_calendar", "~> 2.0"
 gem 'whenever', :require => false
 gem "fog-aws"
 gem 'carrierwave'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'has_friendship'
+gem "mini_magick"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

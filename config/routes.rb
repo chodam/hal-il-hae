@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "callbacks", registrations: "users/registrations" }
   
   resources :todo_lists do
     resources :todo_items, :comments do
@@ -10,8 +10,14 @@ Rails.application.routes.draw do
   end
   
   root "todo_lists#index"
-  post "comments/comment"
-  get "/todo_lists/:todo_list_id"
-  post "/todo_items/complete" => "/todo_lists/:todo_list_id/todo_items"
-  
+  post "todo_lists/comment" => "todo_lists#comment"
+  #get "/todo_lists/:todo_list_id"
+  get "/todo_items/complete"=>"todo_items#complete"
+  #post "todo_items/complete" => "todo_items#complete"
+  #post "" => "todo_items#complete"
+  post "todo_items/upload/:id" => 'todo_items#upload', as: :todo_item_upload
+  get '/mypage/home' => 'mypage#home'
+  get 'mypage/check'
+   
 end
+

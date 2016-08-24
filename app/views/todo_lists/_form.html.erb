@@ -1,4 +1,3 @@
-
 <%= form_for(@todo_list) do |f| %>
   <% if @todo_list.errors.any? %>
     <div id="error_explanation">
@@ -18,7 +17,6 @@
   </div>
   <div class="field">
     <%= f.label :done %><br>
-    <%= f.number_field :done %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :todo_lists
+  has_many :comments
+  has_friendship
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,7 +13,6 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      user.name = auth[:info][:name]
     end
   end
   
