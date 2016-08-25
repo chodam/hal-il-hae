@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :todo_lists
-  has_many :comments
+  has_many :comments, as: :commentable
   has_friendship
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -9,5 +9,6 @@ class MypageController < ApplicationController
   def home
     @users = current_user
   end
+
   
 end

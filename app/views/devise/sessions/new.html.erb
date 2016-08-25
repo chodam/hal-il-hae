@@ -34,6 +34,7 @@
           <div class="input-field col s4">
             <h1 style="text-align:center;">할일해</h1>
             
+            
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div>
                 <%= f.email_field :email, placeholder: "이메일을 입력하세요", autofocus: true %>
@@ -51,13 +52,13 @@
               <% end -%>
             <br>
               <div>
-                <a class="waves-effect waves-light btn">
-                  Log in
-                </a>
-                <a class="waves-effect waves-light btn">
-                  Log in with facebook
-                </a>
-              </div>
+              <a class="waves-effect waves-light btn">
+              Log in
+              </a>
+              <!--<a class="waves-effect waves-light btn">-->
+              <!--    Log in with facebook-->
+              <!--  </a>-->
+              <!--</div>-->
             <% end %>
             
             <div>

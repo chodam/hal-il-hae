@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @todo_list.comments.new(comment_params)
 
+
     respond_to do |wants|
       if @comment.save
         # flash[:notice] = 'Comment was successfully created.'

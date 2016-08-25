@@ -8,6 +8,7 @@
 <!--염) 닉네임 만들려고 시도중. 호오이잉-->
 
 <% @todo_list.comments.each do |c| %>
-  <%= comment.user %> | <%= c.content %> | <%= link_to '삭제', todo_list_comment_path(@todo_list, c), method: :delete %>
+  <!--<%#= User.find(c.uid).nickname %>-->
+  <%= @user.nickname %> | <%= c.content %> | <%= link_to '삭제', todo_list_comment_path(@todo_list, c), method: :delete %>
   <br>
 <% end %>

@@ -1,6 +1,6 @@
 class TodoListsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_todo_list, only: [:show, :main, :edit, :update, :destroy]
+  before_action :set_todo_list, only: [:show, :main ,:edit, :update, :destroy]
 
   # GET /todo_lists
   # GET /todo_lists.json
@@ -19,7 +19,9 @@ class TodoListsController < ApplicationController
     # @todo_friend = TodoList.last
     @comment = Comment.new
     @user = current_user 
-    
+    # @commentfind = Comment.find(params[:id])
+    # @commentfind.user.nickname
+
   end
 
   def main

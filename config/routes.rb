@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post "todo_items/upload/:id" => 'todo_items#upload', as: :todo_item_upload
   get '/mypage/home' => 'mypage#home'
   get 'mypage/check'
+  get '/todo_lists/main' =>'todo_lists#main'
    
 end
 
